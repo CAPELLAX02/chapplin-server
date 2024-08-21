@@ -1,0 +1,6 @@
+{
+  "git.terminalAuthentication": true,
+  "git.terminalGitEditor": true,
+  "animations.Focus-Dimming-Mode": "None",
+  "terminal.explorerKind": "external"
+}
