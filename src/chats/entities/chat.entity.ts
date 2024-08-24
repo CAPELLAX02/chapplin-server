@@ -22,4 +22,4 @@ export class Chat extends AbstractEntity {
   name?: string;
 }
 
-export const chatSchema = SchemaFactory.createForClass(Chat);
+export const ChatSchema = SchemaFactory.createForClass(Chat);
