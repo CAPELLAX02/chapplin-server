@@ -7,11 +7,14 @@ import { GetMessagesArgs } from './dto/get-messages.args';
 import { PUB_SUB } from 'src/common/constants/injection-tokens';
 import { PubSub } from 'graphql-subscriptions';
 import { MESSAGE_CREATED } from './constants/pubsub-triggers';
+import { MessageCreatedArgs } from './dto/message-created.args';
+import { ChatsService } from '../chats.service';
 
 @Injectable()
 export class MessagesService {
   constructor(
     private readonly chatsRepository: ChatsRepository,
+    private readonly chatsService: ChatsService,
     @Inject(PUB_SUB) private readonly pubSub: PubSub,
   ) {}
 
@@ -45,7 +48,7 @@ export class MessagesService {
     await this.chatsRepository.findOneAndUpdate(
       {
         _id: chatId,
-        ...this.userChatFilter(userId), // Apply filter to ensure user is part of the chat
+        ...this.chatsService.userChatFilter(userId), // Apply filter to ensure user is part of the chat
       },
       {
         $push: {
@@ -60,28 +63,6 @@ export class MessagesService {
 
     // Return the newly created message object
     return message;
-  }
-
-  /**
-   * Generates a MongoDB filter object for querying chats involving the specified user.
-   *
-   * This utility function creates a filter to find chats where the given user is either
-   * a direct participant (userId matches) or part of a group chat (userId included in userIds array).
-   *
-   * @param {string} userId - The ID of the user.
-   * @returns {object} The filter object for querying the chats collection.
-   */
-  private userChatFilter(userId: string): object {
-    return {
-      $or: [
-        { userId }, // Direct chats where the user is the primary participant
-        {
-          userIds: {
-            $in: [userId], // Group chats where the user is one of the participants
-          },
-        },
-      ],
-    };
   }
 
   /**
@@ -103,10 +84,21 @@ export class MessagesService {
     // Find the chat by ID and apply a filter to ensure the user is authorized
     const chat = await this.chatsRepository.findOne({
       _id: chatId,
-      ...this.userChatFilter(userId),
+      ...this.chatsService.userChatFilter(userId),
     });
 
     // Return the list of messages from the chat, or an empty array if no messages exist
     return chat ? chat.messages : [];
+  }
+
+  /**
+   *
+   */
+  async messageCreated({ chatId }: MessageCreatedArgs, userId: string) {
+    await this.chatsRepository.findOne({
+      _id: chatId,
+      ...this.chatsService.userChatFilter(userId),
+    });
+    return this.pubSub.asyncIterator(MESSAGE_CREATED);
   }
 }

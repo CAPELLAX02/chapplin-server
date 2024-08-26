@@ -62,19 +62,23 @@ export class MessagesResolver {
   }
 
   /**
-   * Subscription to listen for new messages in a chat.
    *
-   * @param {MessageCreatedArgs} _messageCreatedArgs - The arguments to filter messages for subscription.
-   * @returns {AsyncIterator<Message>} An async iterator that listens for new messages.
    */
   @Subscription(() => Message, {
-    filter: (payload, variables) => {
-      // Filter messages to only emit those that belong to the specified chat
-      return payload.messageCreated.chatId === variables.chatId;
+    filter: (payload, variables, context) => {
+      // get user ID from context
+      const userId = context.req.user._id;
+      // Emit only if the message is from the specified chat and not by the current user
+      return (
+        payload.messageCreated.chatId === variables.chatId &&
+        userId !== payload.messageCreated.userId
+      );
     },
   })
-  messageCreated(@Args() _messageCreatedArgs: MessageCreatedArgs) {
-    // User the PubSub system to subscribe to the MESSAGE_CREATED trigger
-    return this.pubSub.asyncIterator(MESSAGE_CREATED);
+  messageCreated(
+    @Args() messageCreatedArgs: MessageCreatedArgs,
+    @CurrentUser() user: TokenPayload,
+  ) {
+    return this.messagesService.messageCreated(messageCreatedArgs, user._id);
   }
 }
