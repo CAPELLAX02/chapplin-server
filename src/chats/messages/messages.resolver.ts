@@ -22,12 +22,12 @@ export class MessagesResolver {
   /**
    * Mutation to create a new message in a chat.
    *
-   * This mutation allows an authenticated user to create a new message in a specific chat. The message data is provided through the `createMessageInput` parameter, which includes the message content and the target chat ID. The user's ID is retrieved from the authentication token payload.
+   * Allows an authenticated user to create a new message in a specific chat.
+   * The message content and target chat ID are provided as input, and the user's ID is extracted from the authentication token.
    *
    * @param {CreateMessageInput} createMessageInput - The input data for creating a message, including content and chatId.
-   * @param {TokenPayload} user - The current authenticated user's token payload containing user details.
-   * @returns {Promise<Message>} The created message with all relevant details such as content, userId, chatId, and createdAt timestamp.
-   * @throws {Error} Throws an error if the message creation fails or if the user is not authorized.
+   * @param {TokenPayload} user - The current authenticated user's token payload.
+   * @returns {Promise<Message>} The created message.
    */
   @Mutation(() => Message)
   @UseGuards(GqlAuthGuard)
@@ -42,14 +42,11 @@ export class MessagesResolver {
   /**
    * Query to fetch messages for a specific chat.
    *
-   * This query retrieves all messages from a specified chat that the authenticated user is a part of.
-   * The chat is identified using the `chatId` provided in the `getMessageArgs`, and the user's
-   * authorization is verified using their token payload.
+   * Retrieves all messages from a chat that the authenticated user is a part of.
    *
-   * @param {GetMessagesArgs} getMessageArgs - The arguments to filter messages, including the chatId.
-   * @param {TokenPayload} user - The current authenticated user's token payload used to verify their participation in the chat.
-   * @returns {Promise<Message[]>} The list of messages retrieved from the specified chat. Returns an empty array if no messages are found or the user is unauthorized.
-   * @throws {Error} Throws an error if the chat is not found or the user is not a participant.
+   * @param {GetMessagesArgs} getMessageArgs - Arguments to filter messages, including chatId.
+   * @param {TokenPayload} user - The current authenticated user's token payload.
+   * @returns {Promise<Message[]>} List of messages from the specified chat.
    */
   @Query(() => [Message], { name: 'messages' })
   @UseGuards(GqlAuthGuard)
@@ -62,13 +59,19 @@ export class MessagesResolver {
   }
 
   /**
+   * Subscription to notify when a new message is created in a chat.
    *
+   * This subscription triggers when a new message is created in a chat that the authenticated user is a part of.
+   * The subscription includes a filter to ensure that the authenticated user receives notifications only for
+   * messages in the specified chat, and not for messages they themselves created.
+   *
+   * @param {MessageCreatedArgs} messageCreatedArgs - The arguments required for the message creation subscription, including chatId.
+   * @param {TokenPayload} user - The current authenticated user's token payload.
+   * @returns {AsyncIterator<Message>} An asynchronous iterator that pushes the newly created message to the client if the conditions are met.
    */
   @Subscription(() => Message, {
     filter: (payload, variables, context) => {
-      // get user ID from context
       const userId = context.req.user._id;
-      // Emit only if the message is from the specified chat and not by the current user
       return (
         payload.messageCreated.chatId === variables.chatId &&
         userId !== payload.messageCreated.userId

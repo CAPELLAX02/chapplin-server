@@ -12,6 +12,13 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  /**
+   * Logs in a user by generating a JWT and setting it as a cookie in the response.
+   *
+   * @param {User} user - The user entity to log in.
+   * @param {Response} response - The HTTP response object to set the cookie on.
+   * @returns {Promise<void>} - Resolves when the login process is complete.
+   */
   async login(user: User, response: Response) {
     const expires = new Date();
     expires.setSeconds(
@@ -32,7 +39,23 @@ export class AuthService {
   }
 
   /**
+   * Logs out a user by clearing the 'Authentication' cookie in the response.
+   *
+   * @param {Response} response - The HTTP response object to clear the cookie from.
+   * @returns {void}
+   */
+  logout(response: Response) {
+    response.cookie('Authentication', '', {
+      httpOnly: true,
+      expires: new Date(),
+    });
+  }
+
+  /**
    * Verifies the WebSocket connection request by extracting the JWT from cookies.
+   *
+   * Extracts the JWT token from the 'Authentication' cookie in the incoming request
+   * and verifies its validity. If valid, returns the decoded token payload.
    *
    * @param {Request} request - The incoming request object from the WebSocket context.
    * @returns {TokenPayload} - The verified JWT payload containing user information.
@@ -45,12 +68,5 @@ export class AuthService {
     );
     const jwt = authCookie.split('Authentication')[1];
     return this.jwtService.verify(jwt);
-  }
-
-  logout(response: Response) {
-    response.cookie('Authentication', '', {
-      httpOnly: true,
-      expires: new Date(),
-    });
   }
 }
