@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
 import { User } from 'src/users/entities/user.entity';
@@ -64,9 +64,19 @@ export class AuthService {
   verifyWebSocket(request: Request): TokenPayload {
     const cookies: string[] = request.headers.cookie.split('; ');
     const authCookie = cookies.find((cookie) =>
-      cookie.includes('Authentication'),
+      cookie.startsWith('Authentication='),
     );
-    const jwt = authCookie.split('Authentication')[1];
-    return this.jwtService.verify(jwt);
+
+    if (!authCookie) {
+      throw new UnauthorizedException('Authentication token missing');
+    }
+
+    const jwt = authCookie.split('=')[1].trim(); // '=' işaretinden sonraki kısmı al ve boşlukları temizle
+
+    try {
+      return this.jwtService.verify(jwt);
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 }

@@ -30,7 +30,7 @@ import { Request } from 'express';
           'graphql-ws': {
             onConnect: (context: any) => {
               try {
-                const request: Request = context.extra.request as Request;
+                const request: Request = context.extra.request;
                 const user = authService.verifyWebSocket(request);
                 context.user = user;
               } catch (err) {
