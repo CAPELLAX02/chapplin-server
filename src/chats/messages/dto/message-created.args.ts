@@ -1,13 +1,10 @@
 import { ArgsType, Field } from '@nestjs/graphql';
-import { IsNotEmpty } from 'class-validator';
+import { IsArray, IsNotEmpty } from 'class-validator';
 
 @ArgsType()
 export class MessageCreatedArgs {
-  /**
-   * The ID of the chat for which messages are being subscribed.
-   * This field is required.
-   */
-  @Field()
-  @IsNotEmpty()
-  chatId: string;
+  @Field(() => [String])
+  @IsArray()
+  @IsNotEmpty({ each: true })
+  chatIds: string[];
 }
