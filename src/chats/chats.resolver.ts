@@ -7,6 +7,7 @@ import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 import { CurrentUser } from 'src/auth/current-user-decorator';
 import { TokenPayload } from 'src/auth/token-payload.interface';
+import { PaginationArgs } from 'src/common/dto/pagination-args.dto';
 
 @Resolver(() => Chat)
 export class ChatsResolver {
@@ -23,8 +24,8 @@ export class ChatsResolver {
 
   @UseGuards(GqlAuthGuard)
   @Query(() => [Chat], { name: 'chats' })
-  findAll(@CurrentUser() user: TokenPayload): Promise<Chat[]> {
-    return this.chatsService.findMany();
+  findAll(@Args() paginationArgs: PaginationArgs): Promise<Chat[]> {
+    return this.chatsService.findMany([], paginationArgs);
   }
 
   @Query(() => Chat, { name: 'chat' })
