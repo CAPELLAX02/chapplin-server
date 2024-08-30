@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.11.0",
+    "@aws-sdk/client-s3": "^3.637.0",
     "@nestjs/apollo": "^12.2.0",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.3",
@@ -41,6 +42,7 @@
     "migrate-mongo": "^11.0.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.3",
+    "multer": "^1.4.5-lts.1",
     "nestjs-pino": "^4.1.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
@@ -59,6 +61,7 @@
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/migrate-mongo": "^10.0.4",
+    "@types/multer": "^1.4.12",
     "@types/node": "^20.3.1",
     "@types/passport-jwt": "^4.0.1",
     "@types/passport-local": "^1.0.38",
