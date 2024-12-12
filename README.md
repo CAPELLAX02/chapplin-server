@@ -32,10 +32,9 @@ $ cd chapplin-server
 
 
 Install dependencies
-bash```
+```bash
 $ npm install
 ```
-
 
 ---
 
