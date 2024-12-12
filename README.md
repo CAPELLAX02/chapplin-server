@@ -85,19 +85,19 @@ $ npm run test:cov
 
 Contributions are welcome! Please follow these steps:
 
-### 1. Fork the repository.
+1. Fork the repository.
 
 
-### 2. Create a new feature branch (git checkout -b feature/your-feature).
+2. Create a new feature branch (git checkout -b feature/your-feature).
 
 
-### 3. Commit your changes (git commit -m 'Add a new feature').
+3. Commit your changes (git commit -m 'Add a new feature').
 
 
-### 4. Push your branch (git push origin feature/your-feature).
+4. Push your branch (git push origin feature/your-feature).
 
 
-### 5. Open a pull request.
+5. Open a pull request.
 
 
 
