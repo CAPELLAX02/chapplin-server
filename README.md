@@ -1,85 +1,123 @@
+# Chapplin Server
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<p align="center">Chapplin Server is a backend server built using the progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework, <a href="https://nestjs.com/" target="_blank">NestJS</a>, for efficient and scalable server-side applications.</p>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The Chapplin Server is designed to provide a robust backend solution for modern applications, leveraging the power of [NestJS](https://nestjs.com). It ensures scalability, maintainability, and ease of integration with various services.
 
-## Project setup
+Repository: [https://github.com/CAPELLAX02/chapplin-server](https://github.com/CAPELLAX02/chapplin-server)
+
+---
+
+## Project Setup
+
+To set up the project, follow these steps:
 
 ```bash
+Clone the repository
+$ git clone https://github.com/CAPELLAX02/chapplin-server.git
+
+Navigate to the project directory
+$ cd chapplin-server
+
+Install dependencies
 $ npm install
-```
 
-## Compile and run the project
+
+---
+
+## Running the Project
+
+You can run the project in different modes:
 
 ```bash
-# development
+Development mode
 $ npm run start
 
-# watch mode
+```bash
+Watch mode (auto-restart on changes)
 $ npm run start:dev
 
-# production mode
+```bash
+Production mode
 $ npm run start:prod
-```
 
-## Run tests
+
+---
+
+## Testing
+
+The project includes tests to ensure code quality and stability:
 
 ```bash
-# unit tests
+Unit tests
 $ npm run test
 
-# e2e tests
+```bash
+End-to-end tests
 $ npm run test:e2e
 
-# test coverage
+```bash
+Test coverage
 $ npm run test:cov
-```
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+## Contributing
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Contributions are welcome! Please follow these steps:
 
-## Support
+### 1. Fork the repository.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+### 2. Create a new feature branch (git checkout -b feature/your-feature).
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+### 3. Commit your changes (git commit -m 'Add a new feature').
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+### 4. Push your branch (git push origin feature/your-feature).
+
+
+### 5. Open a pull request.
+
+
+
+
+---
+
+Support
+
+If you find this project useful, consider supporting the development by:
+
+Sponsoring via Open Collective
+
+Donating via PayPal
+
+
+
+---
+
+Author
+
+Kamil Myśliwiec - Twitter
+
+Website: https://nestjs.com
+
+
+
+---
+
+License
+
+This project is licensed under the MIT License.
+
+
+
