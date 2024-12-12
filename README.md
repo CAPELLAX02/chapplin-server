@@ -101,34 +101,3 @@ Contributions are welcome! Please follow these steps:
 
 
 
-
----
-
-Support
-
-If you find this project useful, consider supporting the development by:
-
-Sponsoring via Open Collective
-
-Donating via PayPal
-
-
-
----
-
-Author
-
-Kamil Myśliwiec - Twitter
-
-Website: https://nestjs.com
-
-
-
----
-
-License
-
-This project is licensed under the MIT License.
-
-
-
