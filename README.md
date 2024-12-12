@@ -20,15 +20,21 @@ Repository: [https://github.com/CAPELLAX02/chapplin-server](https://github.com/C
 
 To set up the project, follow these steps:
 
-```bash
 Clone the repository
+```bash
 $ git clone https://github.com/CAPELLAX02/chapplin-server.git
+```
 
 Navigate to the project directory
+```bash
 $ cd chapplin-server
+```
+
 
 Install dependencies
+bash```
 $ npm install
+```
 
 
 ---
@@ -37,17 +43,20 @@ $ npm install
 
 You can run the project in different modes:
 
-```bash
 Development mode
+```bash
 $ npm run start
+```
 
-```bash
 Watch mode (auto-restart on changes)
-$ npm run start:dev
-
 ```bash
+$ npm run start:dev
+```
+
 Production mode
+```bash
 $ npm run start:prod
+```
 
 
 ---
@@ -56,17 +65,20 @@ $ npm run start:prod
 
 The project includes tests to ensure code quality and stability:
 
-```bash
 Unit tests
+```bash
 $ npm run test
+```
 
-```bash
 End-to-end tests
-$ npm run test:e2e
-
 ```bash
+$ npm run test:e2e
+```
+
 Test coverage
+```bash
 $ npm run test:cov
+```
 
 ---
 
